@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author LUCYLEONOR
@@ -41,6 +43,8 @@ public class Descuentos extends javax.swing.JFrame {
         lblCA = new javax.swing.JLabel();
         cmdCalcular = new javax.swing.JButton();
         cmdRestaurar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lblT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Descuentos");
@@ -59,6 +63,11 @@ public class Descuentos extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         txtS.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 120, 20));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
@@ -98,15 +107,111 @@ public class Descuentos extends javax.swing.JFrame {
         jPanel1.add(lblCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 140, 40));
 
         cmdCalcular.setText("Calcular");
-        jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 180, -1));
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 180, -1));
 
         cmdRestaurar.setText("Restaurar");
-        jPanel1.add(cmdRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 180, -1));
+        cmdRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdRestaurarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 180, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 380));
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel4.setText("Total a Pagar");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
+
+        lblT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lblT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblT, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 160, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+
+        String r, r1, r2, r3, r4;
+        double pp, ss, sf, ca, t, s, d;
+        
+        s = Double.parseDouble(txtS.getText());
+        
+        pp = s * 0.01;
+        ss = s * 0.04;
+        sf = s * 0.005;
+        ca = s * 0.05;
+        
+        d = pp + ss + sf + ca;
+        
+        t = s - d;
+        
+        r = String.valueOf(pp);
+        r1 = String.valueOf(ss);
+        r2 = String.valueOf(sf);
+        r3 = String.valueOf(ca);
+        r4 = String.valueOf(t);
+        
+        lblPP.setText(r);
+        lblSS.setText(r1);
+        lblSF.setText(r2);
+        lblCA.setText(r3);
+        lblT.setText(r4);
+
+        
+        
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRestaurarActionPerformed
+
+        txtS.setText("");
+        lblPP.setText("");
+        lblSS.setText("");
+        lblSF.setText("");
+        lblCA.setText("");
+        lblT.setText("");
+        txtS.requestFocusInWindow();
+    }//GEN-LAST:event_cmdRestaurarActionPerformed
+
+    private void txtSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        
+            String r, r1, r2, r3, r4;
+        double pp, ss, sf, ca, t, s, d;
+        
+        s = Double.parseDouble(txtS.getText());
+        
+        pp = s * 0.01;
+        ss = s * 0.04;
+        sf = s * 0.005;
+        ca = s * 0.05;
+        
+        d = pp + ss + sf + ca;
+        
+        t = s - d;
+        
+        r = String.valueOf(pp);
+        r1 = String.valueOf(ss);
+        r2 = String.valueOf(sf);
+        r3 = String.valueOf(ca);
+        r4 = String.valueOf(t);
+        
+        lblPP.setText(r);
+        lblSS.setText(r1);
+        lblSF.setText(r2);
+        lblCA.setText(r3);
+        lblT.setText(r4);
+        }
+        
+    }//GEN-LAST:event_txtSKeyPressed
 
     /**
      * @param args the command line arguments
@@ -149,6 +254,7 @@ public class Descuentos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -157,6 +263,7 @@ public class Descuentos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPP;
     private javax.swing.JLabel lblSF;
     private javax.swing.JLabel lblSS;
+    private javax.swing.JLabel lblT;
     private javax.swing.JTextField txtS;
     // End of variables declaration//GEN-END:variables
 }
