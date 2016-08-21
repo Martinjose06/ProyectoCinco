@@ -6,6 +6,7 @@
 package interfaz;
 
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,7 +54,6 @@ public class Descuentos extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Descuentos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
 
@@ -66,6 +66,9 @@ public class Descuentos extends javax.swing.JFrame {
         txtS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSKeyTyped(evt);
             }
         });
         jPanel1.add(txtS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 120, 20));
@@ -139,34 +142,41 @@ public class Descuentos extends javax.swing.JFrame {
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
 
-        String r, r1, r2, r3, r4;
-        double pp, ss, sf, ca, t, s, d;
-        
-        s = Double.parseDouble(txtS.getText());
-        
-        pp = s * 0.01;
-        ss = s * 0.04;
-        sf = s * 0.005;
-        ca = s * 0.05;
-        
-        d = pp + ss + sf + ca;
-        
-        t = s - d;
-        
-        r = String.valueOf(pp);
-        r1 = String.valueOf(ss);
-        r2 = String.valueOf(sf);
-        r3 = String.valueOf(ca);
-        r4 = String.valueOf(t);
-        
-        lblPP.setText(r);
-        lblSS.setText(r1);
-        lblSF.setText(r2);
-        lblCA.setText(r3);
-        lblT.setText(r4);
+        if (txtS.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No Ingresó El Sueldo Base", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtS.requestFocusInWindow();
+        } else if (txtS.getText().equalsIgnoreCase("0")) {
+            JOptionPane.showMessageDialog(this, "Ingrese Un Valor Superior a 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtS.selectAll();
+            txtS.requestFocusInWindow();
+        } else {
+            String r, r1, r2, r3, r4;
+            double pp, ss, sf, ca, t, s, d;
 
-        
-        
+            s = Double.parseDouble(txtS.getText());
+
+            pp = s * 0.01;
+            ss = s * 0.04;
+            sf = s * 0.005;
+            ca = s * 0.05;
+
+            d = pp + ss + sf + ca;
+
+            t = s - d;
+
+            r = String.valueOf(pp);
+            r1 = String.valueOf(ss);
+            r2 = String.valueOf(sf);
+            r3 = String.valueOf(ca);
+            r4 = String.valueOf(t);
+
+            lblPP.setText("$ " + r);
+            lblSS.setText("$ " + r1);
+            lblSF.setText("$ " + r2);
+            lblCA.setText("$ " + r3);
+            lblT.setText("$ " + r4);
+
+        }
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRestaurarActionPerformed
@@ -183,35 +193,54 @@ public class Descuentos extends javax.swing.JFrame {
     private void txtSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSKeyPressed
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        
-            String r, r1, r2, r3, r4;
-        double pp, ss, sf, ca, t, s, d;
-        
-        s = Double.parseDouble(txtS.getText());
-        
-        pp = s * 0.01;
-        ss = s * 0.04;
-        sf = s * 0.005;
-        ca = s * 0.05;
-        
-        d = pp + ss + sf + ca;
-        
-        t = s - d;
-        
-        r = String.valueOf(pp);
-        r1 = String.valueOf(ss);
-        r2 = String.valueOf(sf);
-        r3 = String.valueOf(ca);
-        r4 = String.valueOf(t);
-        
-        lblPP.setText(r);
-        lblSS.setText(r1);
-        lblSF.setText(r2);
-        lblCA.setText(r3);
-        lblT.setText(r4);
+
+            if (txtS.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No Ingresó El Sueldo Base", "ERROR", JOptionPane.ERROR_MESSAGE);
+                txtS.requestFocusInWindow();
+            } else if (txtS.getText().equalsIgnoreCase("0")) {
+                JOptionPane.showMessageDialog(this, "Ingrese Un Valor Superior a 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+                txtS.selectAll();
+                txtS.requestFocusInWindow();
+            } else {
+                String r, r1, r2, r3, r4;
+                double pp, ss, sf, ca, t, s, d;
+
+                s = Double.parseDouble(txtS.getText());
+
+                pp = s * 0.01;
+                ss = s * 0.04;
+                sf = s * 0.005;
+                ca = s * 0.05;
+
+                d = pp + ss + sf + ca;
+
+                t = s - d;
+
+                r = String.valueOf(pp);
+                r1 = String.valueOf(ss);
+                r2 = String.valueOf(sf);
+                r3 = String.valueOf(ca);
+                r4 = String.valueOf(t);
+
+                lblPP.setText("$ " + r);
+                lblSS.setText("$ " + r1);
+                lblSF.setText("$ " + r2);
+                lblCA.setText("$ " + r3);
+                lblT.setText("$ " + r4);
+
+            }
         }
-        
+
     }//GEN-LAST:event_txtSKeyPressed
+
+    private void txtSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSKeyTyped
 
     /**
      * @param args the command line arguments
